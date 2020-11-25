@@ -1,0 +1,11 @@
+version: "2"
+services:
+  autodelete:
+    image: ksurl/autodelete-discord:latest
+    container_name: autodelete
+    ports:
+      - 2202:2202
+    volumes:
+      - <HOST>/config.yml:/app/config.yml
+      - <volume>:/app/data
+    restart: always

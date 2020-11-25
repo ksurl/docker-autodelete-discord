@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ ! -f /app/config.yml ]; then
+  echo "No config file found. Exiting..."
+  exit
+fi
+
+if [ ! -d /app/data ]; then
+  mkdir -p /app/data
+fi
+
+git -C /go/src/github.com/riking/AutoDelete pull
+go build -ldflags="-s -w" -v -o /app/autodelete github.com/riking/AutoDelete/cmd/autodelete
+
+/app/autodelete
