@@ -1,4 +1,4 @@
-# Docker image for [AutoDelete](https://github.com/riking/AutoDelete) based on [jacoknapp/autodelete-discord](https://hub.docker.com/r/jacoknapp/autodelete-discord)
+# Docker image for [AutoDelete](https://github.com/riking/AutoDelete)
 
 * Based on golang:alpine
 * dumb-init

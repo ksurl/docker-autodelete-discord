@@ -1,5 +1,7 @@
 FROM        golang:alpine
 
+LABEL       org.opencontainers.image.source="https://github.com/ksurl/docker-autodelete-discord"
+
 LABEL       maintainer="ksurl"
 
 WORKDIR     /app
