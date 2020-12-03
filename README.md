@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/Docker%20Hub--blue)](https://hub.docker.com/r/ksurl/autodelete-discord) [![](https://img.shields.io/badge/GitHub%20Container%20Registry--yellow)](https://github.com/users/ksurl/packages/container/package/autodelete-discord)
 
 
-[![](https://img.shields.io/github/v/tag/ksurl/docker-autodelete-discord?label=image%20version&logo=docker)](https://hub.docker.com/r/ksurl/autodelete-discord) [![](https://img.shields.io/docker/image-size/ksurl/autodelete-discord/latest?color=lightgrey&logo=Docker)]() [![](https://img.shields.io/github/workflow/status/ksurl/docker-autodelete-discord/Build?label=build&logo=Docker)](https://github.com/ksurl/docker-autodelete-discord/actions?query=workflow%3Abuild)
+[![](https://img.shields.io/github/v/tag/ksurl/docker-autodelete-discord?label=image%20version&logo=docker)](https://hub.docker.com/r/ksurl/autodelete-discord) [![](https://img.shields.io/docker/image-size/ksurl/autodelete-discord/latest?color=lightgrey&logo=Docker)]() [![](https://img.shields.io/github/workflow/status/ksurl/docker-autodelete-discord/build?label=build&logo=Docker)](https://github.com/ksurl/docker-autodelete-discord/actions?query=workflow%3Abuild)
 
 
 * Based on golang:alpine
