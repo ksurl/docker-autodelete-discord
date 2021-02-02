@@ -1,7 +1,7 @@
-version: "2"
+version: "3.8"
 services:
   autodelete:
-    image: ksurl/autodelete-discord:latest
+    image: ghcr.io/ksurl/autodelete-discord
     container_name: autodelete
     ports:
       - 2202:2202
