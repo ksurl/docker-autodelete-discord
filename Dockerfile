@@ -16,7 +16,10 @@ RUN         chmod +x /init && \
             apk add --no-cache \
                 git \
                 dumb-init && \
-            go get -u -v github.com/riking/AutoDelete/cmd/autodelete && \
+            git -C /go/src clone --depth 1 https://github.com/riking/AutoDelete && \
+            cd /go/src/AutoDelete && \
+            go build -ldflags="-s -w" -v -o /app/autodelete /go/src/AutoDelete/cmd/autodelete && \
+            cd /app && \
             rm -rf /tmp/* /var/cache/apk/*
 
 ENTRYPOINT  [ "/usr/bin/dumb-init", "--" ]

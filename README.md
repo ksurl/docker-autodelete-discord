@@ -23,7 +23,7 @@
 
 ## docker-compose 
 
-    version: "3.8"
+    version: "3"
       services:
         autodelete:
           image: ksurl/autodelete-discord:latest

@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 services:
   autodelete:
     image: ghcr.io/ksurl/autodelete-discord

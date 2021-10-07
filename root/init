@@ -9,7 +9,9 @@ if [ ! -d /app/data ]; then
   mkdir -p /app/data
 fi
 
-git -C /go/src/github.com/riking/AutoDelete pull
-go build -ldflags="-s -w" -v -o /app/autodelete github.com/riking/AutoDelete/cmd/autodelete
+git -C /go/src/AutoDelete pull
+cd /go/src/AutoDelete
+go build -ldflags="-s -w" -v -o /app/autodelete /go/src/AutoDelete/cmd/autodelete
+cd /app
 
 /app/autodelete
