@@ -12,7 +12,8 @@ EXPOSE      2202
 
 COPY        root/ /
 
-RUN         chmod +x /init && \
+RUN         set -x; \
+            chmod +x /init && \
             apk add --no-cache \
                 git \
                 dumb-init && \
