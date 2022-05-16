@@ -19,7 +19,7 @@ jobs:
           color: 0xf5d442
 
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Prepare docker image name
         id: image_names
