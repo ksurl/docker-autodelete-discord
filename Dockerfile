@@ -1,4 +1,4 @@
-FROM        golang:1.18.2-alpine3.15
+FROM        golang:1.19.3-alpine3.15
 
 LABEL       org.opencontainers.image.source="https://github.com/ksurl/docker-autodelete-discord"
 
