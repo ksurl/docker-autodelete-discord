@@ -9,14 +9,45 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Actions Start Discord
-        uses: sarisia/actions-status-discord@v1
-        if: always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "Starting new build"
-          noprefix: true
-          color: 0xf5d442
+      # - name: Actions Start Discord
+      #   uses: sarisia/actions-status-discord@v1
+      #   if: always()
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      #     title: "Starting new build"
+      #     noprefix: true
+      #     color: 0xf5d442
+
+      - name: Actions Start Ntfy
+        run: |
+          ntfy_message=$(cat << EOF
+          Repo: ${{ github.repository }}
+          Commit: ${{ github.sha }}
+          Ref: ${{ github.ref }}
+          Workflow started
+          EOF
+          )
+          curl \
+            -H "Authorization: Bearer ${{ secrets.NTFY_TOKEN }}" \
+            -H "Title: Build status" \
+            -H "Content-Type: text/plain" \
+            -d "$ntfy_message" \
+            ${{ secrets.NTFY_URL }}
+      
+      - name: Actions Start Pushover
+        run: |
+          pushover_message=$(cat << EOF
+          Repo: ${{ github.repository }}
+          Commit: ${{ github.sha }}
+          Ref: ${{ github.ref }}
+          EOF
+          )          
+          curl -s \
+            --form-string "token=${{ secrets.PUSHOVER_TOKEN }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER }}" \
+            --form-string "title=Build started" \
+            --form-string "message=$pushover_message" \
+            https://api.pushover.net/1/messages.json
 
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -75,8 +106,40 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
       
-      - name: Actions Status Discord
-        uses: sarisia/actions-status-discord@v1
-        if: always()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}          
+      # - name: Actions Status Discord
+      #   uses: sarisia/actions-status-discord@v1
+      #   if: always()
+      #   with:
+      #     webhook: ${{ secrets.DISCORD_WEBHOOK }}          
+
+      - name: Actions Status Pushover
+        run: |
+          pushover_message=$(cat << EOF
+          Repo: ${{ github.repository }}
+          Commit: ${{ github.sha }}
+          Ref: ${{ github.ref }}
+          EOF
+          )          
+          curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_TOKEN }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER }}" \
+          --form-string "title=Build status" \
+          --form-string "message=${{ env.pushover_message }}" \
+          https://api.pushover.net/1/messages.json
+
+      - name: Actions Status Ntfy
+        run: |
+          ntfy_message=$(cat << EOF
+          Repo: ${{ github.repository }}
+          Commit: ${{ github.sha }}
+          Ref: ${{ github.ref }}
+          Status: ${{ job.status }}
+          Workflow completed
+          EOF
+          )
+          curl \
+            -H "Authorization: Bearer ${{ secrets.NTFY_TOKEN }}" \
+            -H "Title: Build status" \
+            -H "Content-Type: text/plain" \
+            -d "$ntfy_message" \
+            ${{ secrets.NTFY_URL }}
