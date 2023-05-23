@@ -22,7 +22,6 @@
 
 ## docker-compose 
 
-    version: "3"
       services:
         autodelete:
           image: ksurl/autodelete-discord:latest
@@ -30,8 +29,8 @@
           ports:
             - 2202:2202
           volumes:
-            - <HOST>/config.yml:/app/config.yml
-            - <volume>:/app/data
+            - ./config.yml:/app/config.yml
+            - ./data:/app/data
           restart: always
 
 ## Parameters
