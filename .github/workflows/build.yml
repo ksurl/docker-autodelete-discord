@@ -134,7 +134,11 @@ jobs:
           Commit: ${{ github.sha }}
           Ref: ${{ github.ref }}
           Status: ${{ job.status }}
+<<<<<<< HEAD
           Workflow completed
+=======
+          Workflow completed'
+>>>>>>> 02bf5409c8c0ccc71f01347f6db237d8f0f1cc2d
           EOF
           )
           curl \
